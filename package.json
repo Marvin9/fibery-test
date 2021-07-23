@@ -1,0 +1,7 @@
+{
+  "main": "./scripts/fibery.js",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fibery-unofficial": "^0.2.1"
+  }
+}

@@ -1,0 +1,20 @@
+name: on pull request
+on:
+  pull_request:
+    types: [opened, edited, reopened, closed]
+
+jobs:
+  update_fibery:
+    if: ${{ startsWith(github.event.pull_request.title, 'fibery/') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - run: npm i --silent
+      - run: node ./scripts/pr.js
+        env:
+          ACTION: ${{ github.event.action }}
+          TITLE: ${{ github.event.pull_request.title }}
+          FIBERY_HOST: ${{ secrets.FIBERY_HOST }}
+          FIBERY_TOKEN: ${{ secrets.FIBERY_TOKEN }}
