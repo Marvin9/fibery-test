@@ -57,7 +57,7 @@ const parsePRTitle = (title, action) => {
 
   // get number
   // [number]["(main)"?]
-  extracted = extracted.replace(fiberyType, '').trim();
+  extracted = extracted.replace(typeRegex, '').trim();
   const digits = /^\d*/;
   const fiberyPublicId = extracted.match(digits)[0];
 
@@ -84,19 +84,18 @@ const main = async () => {
   const CustomFibery = new Fibery(fiberyUtils.fiberyType);
 
   try {
-    const entity = await CustomFibery.getEntity(fiberyUtils.fiberyPublicId);
-
+    const [entity] = await CustomFibery.getEntity(fiberyUtils.fiberyPublicId);
     await CustomFibery.updateEntityState(
       entity['fibery/id'],
       fiberyUtils.workState
     );
   } catch (e) {
     throw new Error(`Error updating entity
-        For type => ${fiberyUtils.fiberyType}
-        public-id => ${fiberyUtils.fiberyPublicId}
+          For type => ${fiberyUtils.fiberyType}
+          public-id => ${fiberyUtils.fiberyPublicId}
 
-        Error: ${e}
-      `);
+          Error: ${e}
+        `);
   }
 };
 

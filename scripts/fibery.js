@@ -1,3 +1,4 @@
+require('dotenv').config();
 const FiberyUnoff = require('fibery-unofficial');
 
 class Fibery {
@@ -29,7 +30,7 @@ class Fibery {
    *        'fiber/public-id': string
    *        'enum/name': string
    *    }
-   * }>}
+   * }[]>}
    */
   getEntity(fiberyPublicId) {
     return this.fibery.entity.query(
