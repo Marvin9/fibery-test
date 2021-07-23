@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (!process.env.CI) {
+  require('dotenv').config();
+}
 const FiberyUnoff = require('fibery-unofficial');
 
 class Fibery {
