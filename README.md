@@ -1,5 +1,7 @@
 # fibery-test
 
+![demo](./demo.gif)
+
 ## Pull request title format
 
 ```
