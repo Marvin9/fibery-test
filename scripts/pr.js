@@ -29,6 +29,11 @@ const WORKFLOW_STATES = {
  * @returns {fiberyUtils}
  */
 const parsePRTitle = (title, action) => {
+  console.log(`
+    parsing title...
+    title: ${title}
+    action: ${action}
+  `);
   const prefix = /^fibery\//;
   const postfix = /:.+$/;
 
@@ -61,6 +66,15 @@ const parsePRTitle = (title, action) => {
   const digits = /^\d*/;
   const fiberyPublicId = extracted.match(digits)[0];
 
+  console.log(`
+    title parsed...
+    new state: ${Object.keys(WORKFLOW_STATES).find(
+      (key) => WORKFLOW_STATES[key] === STATE
+    )}
+    type: ${fiberyType}
+    public Id: ${fiberyPublicId}
+  `);
+
   return {
     workState: STATE,
     fiberyType,
@@ -86,6 +100,11 @@ const main = async () => {
 
   try {
     const [entity] = await CustomFibery.getEntity(fiberyUtils.fiberyPublicId);
+
+    console.log(`
+      Entity: ${entity}
+    `);
+
     await CustomFibery.updateEntityState(
       entity['fibery/id'],
       fiberyUtils.workState
