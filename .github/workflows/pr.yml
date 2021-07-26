@@ -16,5 +16,5 @@ jobs:
         env:
           ACTION: ${{ github.event.action }}
           TITLE: ${{ github.event.pull_request.title }}
-          FIBERY_HOST: ${{ secrets.FIBERY_HOST }}
-          FIBERY_TOKEN: ${{ secrets.FIBERY_TOKEN }}
+          FIBERY_HOST: ${{ secrets.FIBERY.FIBERY_HOST }}
+          FIBERY_TOKEN: ${{ secrets.FIBERY.FIBERY_TOKEN }}
