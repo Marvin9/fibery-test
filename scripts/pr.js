@@ -69,36 +69,34 @@ const parsePRTitle = (title, action) => {
 };
 
 const main = async () => {
-  console.log(process.env);
-  return;
-  // /**
-  //  * @type {fiberyUtils}
-  //  */
-  // let fiberyUtils = null;
-  // try {
-  //   fiberyUtils = parsePRTitle(TITLE, ACTION);
-  // } catch (e) {
-  //   throw new Error(`Error parsing title ${TITLE}
-  //       Error: ${e}
-  //   `);
-  // }
+  /**
+   * @type {fiberyUtils}
+   */
+  let fiberyUtils = null;
+  try {
+    fiberyUtils = parsePRTitle(TITLE, ACTION);
+  } catch (e) {
+    throw new Error(`Error parsing title ${TITLE}
+        Error: ${e}
+    `);
+  }
 
-  // const CustomFibery = new Fibery(fiberyUtils.fiberyType);
+  const CustomFibery = new Fibery(fiberyUtils.fiberyType);
 
-  // try {
-  //   const [entity] = await CustomFibery.getEntity(fiberyUtils.fiberyPublicId);
-  //   await CustomFibery.updateEntityState(
-  //     entity['fibery/id'],
-  //     fiberyUtils.workState
-  //   );
-  // } catch (e) {
-  //   throw new Error(`Error updating entity
-  //         For type => ${fiberyUtils.fiberyType}
-  //         public-id => ${fiberyUtils.fiberyPublicId}
+  try {
+    const [entity] = await CustomFibery.getEntity(fiberyUtils.fiberyPublicId);
+    await CustomFibery.updateEntityState(
+      entity['fibery/id'],
+      fiberyUtils.workState
+    );
+  } catch (e) {
+    throw new Error(`Error updating entity
+          For type => ${fiberyUtils.fiberyType}
+          public-id => ${fiberyUtils.fiberyPublicId}
 
-  //         Error: ${e}
-  //       `);
-  // }
+          Error: ${e}
+        `);
+  }
 };
 
 main();
