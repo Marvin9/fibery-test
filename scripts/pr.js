@@ -76,9 +76,10 @@ const main = async () => {
   try {
     fiberyUtils = parsePRTitle(TITLE, ACTION);
   } catch (e) {
-    throw new Error(`Error parsing title ${TITLE}
-        Error: ${e}
+    console.error(`Error parsing title ${TITLE}
+    Error: ${e}
     `);
+    process.exit(1);
   }
 
   const CustomFibery = new Fibery(fiberyUtils.fiberyType);
@@ -90,12 +91,13 @@ const main = async () => {
       fiberyUtils.workState
     );
   } catch (e) {
-    throw new Error(`Error updating entity
+    console.error(`Error updating entity
           For type => ${fiberyUtils.fiberyType}
           public-id => ${fiberyUtils.fiberyPublicId}
 
           Error: ${e}
         `);
+    process.exit(1);
   }
 };
 
